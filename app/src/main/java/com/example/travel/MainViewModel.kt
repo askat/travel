@@ -19,7 +19,7 @@ class MainViewModel : ViewModel() {
         emit(Result.Loading)
         if (isFirstLaunch) {
             isFirstLaunch = false
-            delay(1500)
+            delay(2000)
         }
         emit(Result.Success(mockPlaces))
     }
