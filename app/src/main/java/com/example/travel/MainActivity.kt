@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         composable(route = Screens.Home.route) {
-                            HomeScreenComposable()
+                            HomeScreenComposable(paddingValues)
                         }
                         composable(route = Screens.Details.route) {
                             DetailsScreenComposable()
