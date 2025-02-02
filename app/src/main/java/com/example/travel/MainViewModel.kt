@@ -59,4 +59,10 @@ class MainViewModel : ViewModel() {
         delay(1500)
         emit(Result.Success(mockPlaces))
     }
+
+    fun getPlace(placeId: Int) = flow {
+        mockPlaces.find { it.id == placeId }?.let { place ->
+            emit(place)
+        }
+    }
 }

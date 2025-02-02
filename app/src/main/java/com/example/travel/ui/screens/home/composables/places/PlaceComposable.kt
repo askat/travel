@@ -1,5 +1,8 @@
 package com.example.travel.ui.screens.home.composables.places
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,20 +25,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.example.travel.R
 import com.example.travel.model.Place
 import com.example.travel.ui.theme.dark_200_AA
 import com.example.travel.ui.theme.grey_500
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun PlaceComposable(
     place: Place,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
     onPlaceClicked: (Place) -> Unit
 ) {
     Card(
@@ -49,13 +58,24 @@ fun PlaceComposable(
             .height(400.dp)
     ) {
         Box {
-            AsyncImage(
-                model = place.image,
-                contentDescription = place.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxSize()
-            )
+            with(sharedTransitionScope) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(place.image)
+                        .crossfade(true)
+                        .placeholderMemoryCacheKey("image-${place.id}")
+                        .memoryCacheKey("image-${place.id}")
+                        .build(),
+                    contentDescription = place.name,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .sharedElement(
+                            sharedTransitionScope.rememberSharedContentState("image-${place.id}"),
+                            animatedVisibilityScope = animatedContentScope
+                        )
+                )
+            }
             IconToggleButton(
                 checked = place.isFavorite,
                 onCheckedChange = {
