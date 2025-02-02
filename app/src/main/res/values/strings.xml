@@ -11,4 +11,7 @@
     <string name="latest">Последние</string>
     <string name="expensive">Дорогие</string>
     <string name="affordable">Недорогие</string>
+    <string name="favorite">Favorite</string>
+    <string name="location">Location</string>
+    <string name="rating">Rating</string>
 </resources>
