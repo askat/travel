@@ -20,9 +20,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,6 +44,12 @@ import com.example.travel.model.Place
 import com.example.travel.ui.theme.dark_200_AA
 import com.example.travel.ui.theme.grey_500
 import com.example.travel.ui.theme.interFontFamily
+import dev.chrisbanes.haze.HazeDefaults
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.HazeTint
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -51,6 +59,15 @@ fun ImageCard(
     animatedContentScope: AnimatedContentScope,
     onBackClicked: () -> Unit
 ) {
+    val hazeState = remember { HazeState() }
+
+    val cardStyle = HazeStyle(
+        backgroundColor = Color.Black,
+        tints = listOf(HazeTint(MaterialTheme.colorScheme.primary.copy(alpha = 0.4f))),
+        blurRadius = 16.dp,
+        noiseFactor = HazeDefaults.noiseFactor,
+    )
+
     Card(
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 6.dp),
@@ -76,6 +93,7 @@ fun ImageCard(
                             animatedVisibilityScope = animatedContentScope
                         )
                         .clip(shape = RoundedCornerShape(20.dp))
+                        .hazeSource(state = hazeState)
                 )
             }
             IconButton(
@@ -117,12 +135,13 @@ fun ImageCard(
                 )
             }
             Surface(
-                color = dark_200_AA,
-                shape = RoundedCornerShape(20.dp),
+                color = Color.Transparent,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
                     .padding(16.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .hazeEffect(state = hazeState, style = cardStyle)
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
