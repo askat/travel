@@ -1,11 +1,11 @@
 package com.example.travel.ui.screens.home
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -27,32 +27,33 @@ import com.example.travel.ui.theme.poppinsFontFamily
 
 @Composable
 fun HomeScreenComposable(
-    paddingValues: PaddingValues,
     viewModel: MainViewModel = viewModel()
 ) {
     val places = viewModel.places.collectAsStateWithLifecycle(Result.Loading)
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-
-    ) {
-        TopBlock()
-        SearchComposable()
-
-        Text(
-            stringResource(R.string.popular_places),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold,
-            fontFamily = poppinsFontFamily,
-            color = dark_100,
+    Scaffold { paddingValues ->
+        Column(
             modifier = Modifier
-                .padding(start = 16.dp, top = 42.dp, end = 16.dp)
-        )
+                .fillMaxSize()
+                .padding(paddingValues)
 
-        CategoriesComposable()
-        Spacer(modifier = Modifier.height(45.dp))
-        PlacesComposable(places.value)
+        ) {
+            TopBlock()
+            SearchComposable()
+
+            Text(
+                stringResource(R.string.popular_places),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                fontFamily = poppinsFontFamily,
+                color = dark_100,
+                modifier = Modifier
+                    .padding(start = 16.dp, top = 42.dp, end = 16.dp)
+            )
+
+            CategoriesComposable()
+            Spacer(modifier = Modifier.height(45.dp))
+            PlacesComposable(places.value)
+        }
     }
 }
