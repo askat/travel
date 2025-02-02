@@ -14,4 +14,7 @@
     <string name="favorite">Favorite</string>
     <string name="location">Location</string>
     <string name="rating">Rating</string>
+    <string name="save">Save</string>
+    <string name="book_now">Забронировать сейчас</string>
+    <string name="price">Цена</string>
 </resources>
