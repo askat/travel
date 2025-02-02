@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.travel.navigation.Screens
 import com.example.travel.ui.screens.details.DetailsScreenComposable
 import com.example.travel.ui.screens.home.HomeScreenComposable
@@ -24,24 +25,29 @@ class MainActivity : ComponentActivity() {
             TravelTheme(dynamicColor = false) {
                 NavHost(
                     navController = navController,
-                    startDestination = Screens.Splash.route
+                    startDestination = Screens.Splash
                 ) {
-                    composable(route = Screens.Splash.route) {
+                    composable<Screens.Splash> {
                         SplashScreenComposable()
                         LaunchedEffect(true) {
                             delay(1500)
-                            navController.navigate(Screens.Home.route) {
-                                popUpTo(Screens.Splash.route) {
+                            navController.navigate(Screens.Home) {
+                                popUpTo(Screens.Splash) {
                                     inclusive = true
                                 }
                             }
                         }
                     }
-                    composable(route = Screens.Home.route) {
-                        HomeScreenComposable()
+                    composable<Screens.Home> {
+                        HomeScreenComposable(
+                            onPlaceClicked = { place ->
+                                navController.navigate(Screens.Details(placeId = place.id))
+                            }
+                        )
                     }
-                    composable(route = Screens.Details.route) {
-                        DetailsScreenComposable()
+                    composable<Screens.Details> { backStackEntry ->
+                        val details = backStackEntry.toRoute<Screens.Details>()
+                        DetailsScreenComposable(details.placeId)
                     }
                 }
             }

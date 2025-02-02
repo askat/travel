@@ -17,6 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.travel.MainViewModel
 import com.example.travel.R
+import com.example.travel.model.Place
 import com.example.travel.model.Result
 import com.example.travel.ui.screens.home.composables.bottom_bar.BottomBar
 import com.example.travel.ui.screens.home.composables.categories.CategoriesComposable
@@ -28,6 +29,7 @@ import com.example.travel.ui.theme.poppinsFontFamily
 
 @Composable
 fun HomeScreenComposable(
+    onPlaceClicked: (Place) -> Unit,
     viewModel: MainViewModel = viewModel()
 ) {
     val places = viewModel.places.collectAsStateWithLifecycle(Result.Loading)
@@ -58,7 +60,9 @@ fun HomeScreenComposable(
 
             CategoriesComposable()
             Spacer(modifier = Modifier.height(45.dp))
-            PlacesComposable(places.value)
+            PlacesComposable(places.value) { p ->
+                onPlaceClicked.invoke(p)
+            }
         }
     }
 }
