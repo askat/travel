@@ -68,4 +68,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
 
     implementation(libs.androidx.navigation.compose)
+
+    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
 }
