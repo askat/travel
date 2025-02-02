@@ -3,4 +3,5 @@
     <string name="splash_text">Найдите место своей\nмечты вместе с нами</string>
     <string name="hello_david">Привет, Дэвид \uD83D\uDC4B</string>
     <string name="explore_the_world">Исследуйте мир</string>
+    <string name="search_placeholder">Поиск мест</string>
 </resources>
