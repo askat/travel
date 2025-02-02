@@ -18,6 +18,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.travel.MainViewModel
 import com.example.travel.R
 import com.example.travel.model.Result
+import com.example.travel.ui.screens.home.composables.bottom_bar.BottomBar
 import com.example.travel.ui.screens.home.composables.categories.CategoriesComposable
 import com.example.travel.ui.screens.home.composables.places.PlacesComposable
 import com.example.travel.ui.screens.home.composables.search.SearchComposable
@@ -31,7 +32,11 @@ fun HomeScreenComposable(
 ) {
     val places = viewModel.places.collectAsStateWithLifecycle(Result.Loading)
 
-    Scaffold { paddingValues ->
+    Scaffold(
+        bottomBar = {
+            BottomBar()
+        }
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
