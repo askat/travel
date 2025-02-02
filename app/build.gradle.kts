@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
 
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 
-    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
+    implementation(libs.coil.compose)
 }

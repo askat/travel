@@ -12,7 +12,8 @@ import com.example.travel.model.Result
 
 @Composable
 fun PlacesComposable(
-    places: Result<List<Place>>
+    places: Result<List<Place>>,
+    onPlaceClicked: (Place) -> Unit
 ) {
     when (places) {
         is Result.Loading -> {
@@ -30,8 +31,8 @@ fun PlacesComposable(
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(places.data) {
-                    PlaceComposable(it) {
-
+                    PlaceComposable(it) { p ->
+                        onPlaceClicked.invoke(p)
                     }
                 }
             }
