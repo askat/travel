@@ -17,4 +17,8 @@
     <string name="save">Save</string>
     <string name="book_now">Забронировать сейчас</string>
     <string name="price">Цена</string>
+    <string name="overview">Обзор</string>
+    <string name="details">Подробности</string>
+    <string name="time">Time</string>
+    <string name="weather">weather</string>
 </resources>
