@@ -76,3 +76,6 @@ val surfaceContainerHighestDark = Color(0xFF353434)
 
 val grey_100 = Color(0xFFD2D2D2)
 val grey_200 = Color(0xFF888888)
+val grey_300 = Color(0xFFC5C5C5)
+val grey_400 = Color(0xFFFBFBFB)
+val dark_100 = Color(0xFF2F2F2F)
