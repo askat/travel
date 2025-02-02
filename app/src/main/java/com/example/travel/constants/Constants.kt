@@ -2,6 +2,7 @@ package com.example.travel.constants
 
 import com.example.travel.R
 import com.example.travel.model.Place
+import com.example.travel.ui.theme.grey_100
 
 val mockData = listOf(
     Place(
@@ -54,4 +55,14 @@ val mockData = listOf(
         image = R.drawable.tulpar_kul,
         time = "8 часов"
     )
+)
+
+val shimmerColors = listOf(
+    grey_100.copy(alpha = 0.1f),
+    grey_100.copy(alpha = 0.3f),
+    grey_100.copy(alpha = 0.5f),
+    grey_100.copy(alpha = 1.0f),
+    grey_100.copy(alpha = 0.5f),
+    grey_100.copy(alpha = 0.3f),
+    grey_100.copy(alpha = 0.1f),
 )

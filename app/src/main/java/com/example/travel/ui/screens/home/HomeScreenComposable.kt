@@ -65,7 +65,7 @@ fun HomeScreenComposable(
             )
 
             CategoriesComposable()
-            Spacer(modifier = Modifier.height(45.dp))
+            Spacer(modifier = Modifier.height(25.dp))
             PlacesComposable(
                 places.value,
                 sharedTransitionScope,
