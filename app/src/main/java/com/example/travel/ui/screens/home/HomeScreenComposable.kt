@@ -1,5 +1,8 @@
 package com.example.travel.ui.screens.home
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,8 +30,11 @@ import com.example.travel.ui.screens.home.composables.top_block.TopBlock
 import com.example.travel.ui.theme.dark_100
 import com.example.travel.ui.theme.poppinsFontFamily
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun HomeScreenComposable(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
     onPlaceClicked: (Place) -> Unit,
     viewModel: MainViewModel = viewModel()
 ) {
@@ -60,7 +66,11 @@ fun HomeScreenComposable(
 
             CategoriesComposable()
             Spacer(modifier = Modifier.height(45.dp))
-            PlacesComposable(places.value) { p ->
+            PlacesComposable(
+                places.value,
+                sharedTransitionScope,
+                animatedContentScope,
+            ) { p ->
                 onPlaceClicked.invoke(p)
             }
         }
