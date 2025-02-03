@@ -68,4 +68,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
 
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.coil.compose)
+
+    implementation(libs.haze)
 }

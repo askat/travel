@@ -4,4 +4,21 @@
     <string name="hello_david">Привет, Дэвид \uD83D\uDC4B</string>
     <string name="explore_the_world">Исследуйте мир</string>
     <string name="search_placeholder">Поиск мест</string>
+    <string name="popular_places">Популярные места</string>
+    <string name="all">Все</string>
+    <string name="most_viewed">Самые\nпросматриваемые</string>
+    <string name="near">Рядом</string>
+    <string name="latest">Последние</string>
+    <string name="expensive">Дорогие</string>
+    <string name="affordable">Недорогие</string>
+    <string name="favorite">Favorite</string>
+    <string name="location">Location</string>
+    <string name="rating">Rating</string>
+    <string name="save">Save</string>
+    <string name="book_now">Забронировать сейчас</string>
+    <string name="price">Цена</string>
+    <string name="overview">Обзор</string>
+    <string name="details">Подробности</string>
+    <string name="time">Time</string>
+    <string name="weather">weather</string>
 </resources>
