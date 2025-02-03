@@ -60,7 +60,9 @@ fun SearchComposable() {
                         .border(2.dp, grey_100, RoundedCornerShape(20.dp))
                         .padding(start = 31.dp, end = 24.dp, top = 4.dp, bottom = 4.dp)
                 ) {
-                    Box {
+                    Box(
+                        Modifier.fillMaxWidth(0.8f)
+                    ) {
                         if (search.isBlank()) {
                             Text(
                                 stringResource(R.string.search_placeholder),
@@ -71,7 +73,6 @@ fun SearchComposable() {
                         }
                         innerTextField()
                     }
-                    Spacer(Modifier.weight(1f))
                     VerticalDivider(
                         thickness = 2.dp,
                         modifier = Modifier
